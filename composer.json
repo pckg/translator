@@ -1,0 +1,21 @@
+{
+  "name": "pckg/translator",
+  "description": "Translator",
+  "homepage": "https://github.com/pckg/translator",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bojan Rajh",
+      "email": "schtr4jh@schtr4jh.net"
+    }
+  ],
+  "require": {},
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "": [
+        "src/"
+      ]
+    }
+  }
+}
