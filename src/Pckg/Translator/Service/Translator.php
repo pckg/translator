@@ -1,8 +1,5 @@
 <?php namespace Pckg\Translator\Service;
 
-use Pckg\Translator\Entity\GnpTranslations;
-use Pckg\Translator\Entity\Translations;
-
 class Translator
 {
 
@@ -12,12 +9,7 @@ class Translator
 
     public function __construct()
     {
-        $this->entities = [
-            Translations::class,
-            GnpTranslations::class,
-        ];
-
-        foreach ($this->entities as $entity) {
+        foreach ($this->getEntities() as $entity) {
             $entity = new $entity;
             $this->data[] = $entity->all()->keyBy('slug');
         }
@@ -32,6 +24,11 @@ class Translator
         }
 
         return $key;
+    }
+
+    public function getEntities()
+    {
+        return config('pckg.translator.entities');
     }
 
 }
