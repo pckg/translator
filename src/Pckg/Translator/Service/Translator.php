@@ -15,7 +15,7 @@ class Translator
         }
     }
 
-    public function get($key, $lang)
+    public function get($key, $lang = null)
     {
         foreach ($this->data as $collection) {
             if ($collection->keyExists($key)) {
