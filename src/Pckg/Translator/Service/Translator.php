@@ -28,7 +28,7 @@ class Translator
 
     public function getEntities()
     {
-        return config('defaults.pckg.translator.entities', []);
+        return config('pckg.translator.entities', []);
     }
 
 }
