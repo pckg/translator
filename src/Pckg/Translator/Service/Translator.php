@@ -11,6 +11,9 @@ class Translator
     {
         foreach ($this->getEntities() as $entity) {
             $entity = new $entity;
+            if (method_exists($entity, 'joinTranslations')) {
+                $entity->joinTranslations();
+            }
             $this->data[] = $entity->all()->keyBy('slug');
         }
     }
@@ -19,7 +22,7 @@ class Translator
     {
         foreach ($this->data as $collection) {
             if ($collection->keyExists($key)) {
-                return $collection[$key]->content;
+                return $collection[$key]->content ?? ($collection[$key]->value ?? $key);
             }
         }
 
