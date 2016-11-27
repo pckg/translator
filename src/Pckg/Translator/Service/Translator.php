@@ -22,7 +22,13 @@ class Translator
     {
         foreach ($this->data as $collection) {
             if ($collection->keyExists($key)) {
-                return $collection[$key]->content ?? ($collection[$key]->value ?? $key);
+                if (isset($collection[$key]->content)) {
+                    return $collection[$key]->content;
+
+                } else if (isset($collection[$key]->value)) {
+                    return $collection[$key]->value;
+
+                }
             }
         }
 
