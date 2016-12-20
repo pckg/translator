@@ -9,11 +9,14 @@ class Translator
 
     public function __construct()
     {
-        foreach ($this->getEntities() as $entity) {
+        /**
+         * @T00D00:
+         *         - cache translator globally
+         *         - support language parameter
+         */
+        foreach (config('pckg.translator.entities', []) as $entity) {
             $entity = new $entity;
-            if (method_exists($entity, 'joinTranslations')) {
-                $entity->joinTranslations();
-            }
+            $entity->joinTranslations();
             $this->data[] = $entity->all()->keyBy('slug');
         }
     }
@@ -22,22 +25,11 @@ class Translator
     {
         foreach ($this->data as $collection) {
             if ($collection->keyExists($key)) {
-                if (isset($collection[$key]->content)) {
-                    return $collection[$key]->content;
-
-                } else if (isset($collection[$key]->value)) {
-                    return $collection[$key]->value;
-
-                }
+                return $collection[$key]->value;
             }
         }
 
         return $key;
-    }
-
-    public function getEntities()
-    {
-        return config('pckg.translator.entities', []);
     }
 
 }
