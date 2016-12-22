@@ -17,6 +17,7 @@ class Translator
         foreach (config('pckg.translator.entities', []) as $entity) {
             $entity = new $entity;
             $entity->joinTranslations();
+            $entity->joinFallbackTranslation();
             $this->data[] = $entity->all()->keyBy('slug');
         }
     }
