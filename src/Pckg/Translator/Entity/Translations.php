@@ -8,4 +8,9 @@ class Translations extends Entity
 
     use Translatable;
 
+    public function boot()
+    {
+        $this->joinTranslations();
+    }
+
 }

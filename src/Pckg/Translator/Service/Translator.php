@@ -14,9 +14,11 @@ class Translator
          *         - cache translator globally
          *         - support language parameter
          */
-        foreach (config('pckg.translator.entities', []) as $entity) {
+        foreach (config('pckg.translator.entities', []) as $key => $entity) {
             $entity = new $entity;
-            $entity->joinTranslations();
+            if (is_string($key)) {
+                $entity->setRepository(context()->get($key));
+            }
             $entity->joinFallbackTranslation();
             $this->data[] = $entity->all()->keyBy('slug');
         }
