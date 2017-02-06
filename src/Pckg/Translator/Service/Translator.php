@@ -7,7 +7,7 @@ class Translator
 
     protected $data = [];
 
-    public function __construct()
+    public function boot()
     {
         /**
          * @T00D00:
@@ -15,12 +15,32 @@ class Translator
          *         - support language parameter
          */
         foreach (config('pckg.translator.entities', []) as $key => $entity) {
+            /**
+             * First, create entity.
+             */
             $entity = new $entity;
+
+            /**
+             * Manually set repository.
+             */
             if (is_string($key)) {
                 $entity->setRepository(context()->get($key));
             }
+
+            /**
+             * Join fallback translation in fallback translation language is different.
+             */
             $entity->joinFallbackTranslation();
-            $this->data[] = $entity->all()->keyBy('slug');
+
+            /**
+             * Get translations from database.
+             */
+            $translations = $entity->all()->keyBy('slug');
+
+            /**
+             * Add translations to request cache.
+             */
+            $this->data[] = $translations;
         }
     }
 
