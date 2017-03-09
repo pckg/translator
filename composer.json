@@ -1,6 +1,6 @@
 {
   "name": "pckg/translator",
-  "description": "Translator",
+  "description": "Translation service",
   "homepage": "https://github.com/pckg/translator",
   "license": "MIT",
   "authors": [
