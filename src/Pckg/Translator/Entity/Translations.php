@@ -8,9 +8,4 @@ class Translations extends Entity
 
     protected $record = Translation::class;
 
-    public function boot()
-    {
-        $this->joinTranslations();
-    }
-
 }
