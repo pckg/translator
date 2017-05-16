@@ -76,7 +76,7 @@ class Translator
                     continue;
                 }
 
-                $sources[str_replace('.php', '', $entry)][] = require_once $dir . '/' . $entry;
+                $sources[str_replace('.php', '', $entry)][] = require $dir . '/' . $entry;
             }
         }
 
