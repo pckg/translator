@@ -54,6 +54,11 @@ class Translator
 
     private function mergeArrayTranslations(&$flatTranslations, $translations, $prefix)
     {
+        if (!is_array($translations)) {
+            $translations = [$prefix => $translations];
+            $prefix = '';
+        }
+
         foreach ($translations as $key => $translation) {
             if (is_array($translation)) {
                 $this->mergeArrayTranslations($flatTranslations, $translation, ($prefix ? $prefix . '.' : '') . $key);
