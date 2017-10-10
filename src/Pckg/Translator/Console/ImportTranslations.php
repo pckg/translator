@@ -1,7 +1,7 @@
 <?php namespace Pckg\Translator\Console;
 
 use Pckg\Framework\Console\Command;
-use Pckg\Framework\Locale\Lang;
+use Pckg\Locale\Lang;
 use Pckg\Translator\Entity\Translations;
 use Pckg\Translator\Record\Translation;
 use Pckg\Translator\Service\Translator;
