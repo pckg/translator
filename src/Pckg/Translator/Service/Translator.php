@@ -133,7 +133,7 @@ class Translator
         }
 
         foreach ($this->data as $collection) {
-            if ($collection->keyExists($key)) {
+            if ($collection->hasKey($key)) {
                 $translation = $collection[$key];
 
                 return is_object($translation) ? $translation->value : $translation;
