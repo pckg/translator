@@ -45,7 +45,7 @@ class Translator
         $language = substr(localeManager()->getCurrent(), 0, 2);
         $flatTranslations = $this->getFlatDirTranslations();
 
-        if (!$flatTranslations || !$flatTranslations[$language]) {
+        if (!$flatTranslations || !array_key_exists($language, $flatTranslations)) {
             return $this;
         }
 
