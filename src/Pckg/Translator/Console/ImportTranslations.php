@@ -19,8 +19,12 @@ class ImportTranslations extends Command
     {
         $translatorService = context()->getOrCreate(Translator::class);
         $flatTranslations = $translatorService->getFlatDirTranslations();
+        $languages = localeManager()->getLanguages()->keyBy('slug');
 
         foreach ($flatTranslations as $language => $translations) {
+            if (!$languages->hasKey($language)) {
+                return;
+            }
             $this->output('Checking language ' . $language);
             runInLocale(function() use ($translations, $language) {
                 foreach ($translations as $slug => $translation) {
