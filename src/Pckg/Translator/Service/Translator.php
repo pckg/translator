@@ -143,6 +143,22 @@ class Translator
         return $key;
     }
 
+    public function getMultiple($keys = [])
+    {
+        $values = [];
+
+        foreach ($keys as $key) {
+            $values[$key] = $this->get($key);
+        }
+
+        return $values;
+    }
+
+    public function getPublicTranslations()
+    {
+        return $this->getMultiple(config('pckg.translator.publicTranslations', []));
+    }
+
     public function addDir($dir)
     {
         $this->dirs[] = $dir;
