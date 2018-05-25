@@ -41,8 +41,8 @@ class ImportTranslations extends Command
                                                              ->where('slug', $slug)
                                                              ->one();
 
-                    if (!$translationRecord->language_id) {
-                        $this->output('Add ' . $language . ':' . $slug);
+                    if (!$translationRecord->language_id || in_array($slug, config('pckg.translator.cleanTranslations', []))) {
+                        $this->output(($translationRecord->language_id ? 'Overwrite ' : 'Add ') . $language . ':' . $slug);
                         $translationRecord->setAndSave(['value' => $translation, 'language_id' => $language]);
                         continue;
                     }
