@@ -23,7 +23,7 @@ class ImportTranslations extends Command
 
         foreach ($flatTranslations as $language => $translations) {
             if (!$languages->hasKey($language)) {
-                return;
+                continue;
             }
             $this->output('Checking language ' . $language);
             runInLocale(function() use ($translations, $language) {
