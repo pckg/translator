@@ -132,12 +132,32 @@ class Translator
             $this->boot();
         }
 
+        $values = [];
         foreach ($this->data as $collection) {
             if ($collection->hasKey($key)) {
                 $translation = $collection[$key];
 
                 return is_object($translation) ? $translation->value : $translation;
             }
+            if (strpos($key, '(.*)') === false) {
+                continue;
+            }
+
+            /**
+             * Find all translations.
+             */
+            $key = substr($key, 0, strpos($key, '(.*)'));
+            foreach ($collection as $translationKey => $translation) {
+                if (strpos($translationKey, $key) !== 0) {
+                    continue;
+                }
+
+                $values[$translationKey] = is_object($translation) ? $translation->value : $translation;
+            }
+        }
+
+        if ($values) {
+            return $values;
         }
 
         return $key;
@@ -148,7 +168,13 @@ class Translator
         $values = [];
 
         foreach ($keys as $key) {
-            $values[$key] = $this->get($key);
+            $translations = $this->get($key);
+            if (!is_array($translations)) {
+                $translations = [$key => $translations];
+            }
+            foreach ($translations as $k => $translation) {
+                $values[$k] = $translation;
+            }
         }
 
         return $values;
