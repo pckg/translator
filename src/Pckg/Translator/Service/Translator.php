@@ -1,6 +1,7 @@
 <?php namespace Pckg\Translator\Service;
 
 use Pckg\Collection;
+use Pckg\Translator\Entity\Translations;
 
 class Translator
 {
@@ -117,7 +118,9 @@ class Translator
             /**
              * Get translations from database.
              */
-            $translations = $entity->all()->keyBy('slug');
+            $translations = $entity/*->cache('1hour', 'app', Translator::class . ':' . Translations::class)*/
+                                   ->all()
+                                   ->keyBy('slug');
 
             /**
              * Add translations to request cache.
