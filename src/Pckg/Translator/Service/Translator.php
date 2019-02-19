@@ -1,7 +1,6 @@
 <?php namespace Pckg\Translator\Service;
 
 use Pckg\Collection;
-use Pckg\Translator\Entity\Translations;
 
 class Translator
 {
@@ -76,6 +75,10 @@ class Translator
     {
         $sources = [];
         foreach ($this->dirs as $dir) {
+            if (!is_dir($dir)) {
+                continue;
+            }
+
             $handle = opendir($dir);
             while (false !== ($entry = readdir($handle))) {
                 if (!is_file($dir . '/' . $entry)) {
