@@ -1,4 +1,6 @@
-<?php namespace Pckg\Translator\Service;
+<?php
+
+namespace Pckg\Translator\Service;
 
 use Pckg\Collection;
 
@@ -103,7 +105,7 @@ class Translator
             /**
              * First, create entity.
              */
-            $entity = new $entity;
+            $entity = new $entity();
 
             /**
              * Manually set repository.
@@ -197,5 +199,4 @@ class Translator
 
         return $this;
     }
-
 }

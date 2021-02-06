@@ -1,4 +1,6 @@
-<?php namespace Pckg\Translator\Console;
+<?php
+
+namespace Pckg\Translator\Console;
 
 use Pckg\Framework\Console\Command;
 use Pckg\Locale\Lang;
@@ -26,7 +28,7 @@ class ImportTranslations extends Command
                 continue;
             }
             $this->output('Checking language ' . $language);
-            runInLocale(function() use ($translations, $language) {
+            runInLocale(function () use ($translations, $language) {
                 foreach ($translations as $slug => $translation) {
                     $slugTranslation = (new Translations())->where('slug', $slug)->one();
 
@@ -52,5 +54,4 @@ class ImportTranslations extends Command
 
         $this->output('Done');
     }
-
 }

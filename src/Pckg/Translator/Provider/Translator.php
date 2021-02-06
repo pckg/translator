@@ -1,4 +1,6 @@
-<?php namespace Pckg\Translator\Provider;
+<?php
+
+namespace Pckg\Translator\Provider;
 
 use Pckg\Framework\Provider;
 use Pckg\Translator\Console\ImportTranslations;
@@ -12,5 +14,4 @@ class Translator extends Provider
             ImportTranslations::class,
         ];
     }
-
 }
