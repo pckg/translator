@@ -6,7 +6,6 @@ use Pckg\Collection;
 
 class Translator
 {
-
     protected $entities;
 
     protected $data = [];

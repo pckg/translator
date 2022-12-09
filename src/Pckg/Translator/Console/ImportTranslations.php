@@ -10,7 +10,6 @@ use Pckg\Translator\Service\Translator;
 
 class ImportTranslations extends Command
 {
-
     protected function configure()
     {
         $this->setName('translator:import')

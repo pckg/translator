@@ -7,6 +7,5 @@ use Pckg\Translator\Entity\Translations;
 
 class Translation extends Record
 {
-
     protected $entity = Translations::class;
 }

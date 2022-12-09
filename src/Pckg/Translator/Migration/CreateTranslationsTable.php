@@ -6,7 +6,6 @@ use Pckg\Migration\Migration;
 
 class CreateTranslationsTable extends Migration
 {
-
     public function up()
     {
         $translations = $this->table('translations');
@@ -17,5 +16,7 @@ class CreateTranslationsTable extends Migration
         $translationsI18n->text('value');
 
         $this->save();
+
+        return $this;
     }
 }
